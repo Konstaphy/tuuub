@@ -1,0 +1,16 @@
+.person-video-page {
+    display: grid;
+    width: 100%;
+
+    grid-template-columns: 1fr 1fr;
+}
+
+.person-videos {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.upload-video-form {
+    padding: 20px;
+}
