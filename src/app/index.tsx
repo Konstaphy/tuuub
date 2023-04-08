@@ -1,7 +1,13 @@
+import { Header } from "../widgets/header/header";
+import { Routes, Route } from "react-router-dom";
+
 export const App = () => {
   return (
-    <div>
-      <h1>Hello World!</h1>
+    <div id={"app-root"}>
+      <Header />
+      <Routes>
+        <Route path={"/"} element={<div>content</div>}></Route>
+      </Routes>
     </div>
   );
 };
