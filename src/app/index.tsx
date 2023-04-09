@@ -1,15 +1,33 @@
 import { Header } from "../widgets/header/header";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { PersonVideoPage } from "../pages/upload-video-page/person-video-page";
+import { SignIn } from "../pages/authentication/sign-in/sign-in";
+import { SignUp } from "../pages/authentication/sign-up/sign-up";
 
 export const App = () => {
+  const accessToken = localStorage.getItem("token");
+
+  // unauthorized routes
+  if (!accessToken) {
+    return (
+      <div id="app-root">
+        <Routes>
+          <Route path="/sign-in" element={<SignIn />}></Route>
+          <Route path="/sign-up" element={<SignUp />}></Route>
+          <Route path="*" element={<Navigate to="/sign-in" />}></Route>
+        </Routes>
+      </div>
+    );
+  }
+
+  // authorized routes
   return (
     <div id="app-root">
       <Header />
       <Routes>
         <Route path="/" element={<div>content</div>}></Route>
         <Route path="/person/:id" element={<PersonVideoPage />}></Route>
-        <Route path="*" element={<div>Not found</div>}></Route>
+        <Route path="*" element={<Navigate to={"/"} />}></Route>
       </Routes>
     </div>
   );
