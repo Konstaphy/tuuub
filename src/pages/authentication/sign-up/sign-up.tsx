@@ -2,6 +2,7 @@ import { useState } from "react";
 import { authTransport } from "../../../features/auth/api/auth-transport";
 import { SHA256 } from "crypto-js";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "../../../entities/user/model/user";
 
 export const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -10,12 +11,14 @@ export const SignUp = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  const setUser = useUserStore((st) => st.setUser);
+
   const signUp = () => {
     const pw = SHA256(password).toString();
     authTransport
       .signUp(username, pw, email)
       .then((res) => {
-        localStorage.setItem("token", res.token);
+        setUser(res.user_id, res.token);
         navigate("/");
       })
       .catch((e) => {

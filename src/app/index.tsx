@@ -3,12 +3,13 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { PersonVideoPage } from "../pages/upload-video-page/person-video-page";
 import { SignIn } from "../pages/authentication/sign-in/sign-in";
 import { SignUp } from "../pages/authentication/sign-up/sign-up";
+import { useUserStore } from "../entities/user/model/user";
 
 export const App = () => {
-  const accessToken = localStorage.getItem("token");
+  const { token } = useUserStore();
 
   // unauthorized routes
-  if (!accessToken) {
+  if (!token) {
     return (
       <div id="app-root">
         <Routes>

@@ -6,7 +6,7 @@ const methods = {
 };
 
 class AuthTransport {
-  private readonly url = "http://localhost:8080/users/";
+  private readonly url = "http://95.182.122.177:8080/users/";
 
   public async signUp(username: string, password: string, email: string) {
     return await axios
