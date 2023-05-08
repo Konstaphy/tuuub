@@ -38,4 +38,4 @@ jobs:
             sudo docker stop tuuub
             sudo docker rm -f tuuub
             sudo docker pull konstaphy/tuuub
-            sudo docker run --name tuuub -p 8080:8080 -d konstaphy/tuuub
+            sudo docker run --name tuuub -p 80:80 -d konstaphy/tuuub
