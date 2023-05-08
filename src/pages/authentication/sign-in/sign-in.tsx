@@ -44,7 +44,7 @@ export const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p className={"alert"}>{error}</p>}
-          <button onClick={signIn}>123</button>
+          <button onClick={signIn}>Войти</button>
           <p className={"secondary"} onClick={() => navigate("/sign-up")}>
             Зарегистрироваться
           </p>

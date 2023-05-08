@@ -4,9 +4,20 @@ import { PersonVideoPage } from "../pages/upload-video-page/person-video-page";
 import { SignIn } from "../pages/authentication/sign-in/sign-in";
 import { SignUp } from "../pages/authentication/sign-up/sign-up";
 import { useUserStore } from "../entities/user/model/user";
+import { useEffect } from "react";
+import { AuthenticationService } from "../features/auth/lib/authentication-service";
+import { authTransport } from "../features/auth/api/auth-transport";
 
 export const App = () => {
   const { token } = useUserStore();
+
+  const authService = new AuthenticationService(authTransport);
+
+  useEffect(() => {
+    if (token) {
+      authService.refresh().catch((e) => console.error(e));
+    }
+  }, []);
 
   // unauthorized routes
   if (!token) {

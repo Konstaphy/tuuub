@@ -3,7 +3,8 @@ import { persist } from "zustand/middleware";
 
 type UserStore = {
   userId: null | string;
-  setUser: (userId: string, token: string) => void;
+  username: null | string;
+  setUser: (userId: string, token: string, username: string) => void;
   token: null | string;
 };
 
@@ -12,7 +13,9 @@ export const useUserStore = create(
     (set) => ({
       userId: null,
       token: null,
-      setUser: (userId: string, token: string) => set({ userId, token }),
+      username: null,
+      setUser: (userId: string, token: string, username: string) =>
+        set({ userId, token, username }),
     }),
     { name: "user" }
   )
