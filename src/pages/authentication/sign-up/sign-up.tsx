@@ -2,49 +2,59 @@ import { useState } from "react";
 import { authTransport } from "../../../features/auth/api/auth-transport";
 import { SHA256 } from "crypto-js";
 import { useNavigate } from "react-router-dom";
-import { useUserStore } from "../../../entities/user/model/user";
+import { AuthenticationService } from "../../../features/auth/lib/authentication-service";
+import classes from "../authentication.module.css";
 
 export const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
 
-  const setUser = useUserStore((st) => st.setUser);
+  const navigate = useNavigate();
+  const authService = new AuthenticationService(authTransport);
 
   const signUp = () => {
-    const pw = SHA256(password).toString();
-    authTransport
-      .signUp(username, pw, email)
+    authService
+      .signUp(username, SHA256(password).toString(), email)
       .then((res) => {
-        setUser(res.user_id, res.token);
-        navigate("/");
+        navigate("/person/" + res.user_id);
       })
       .catch((e) => {
-        setError(e.response.data.message);
+        setError(e.response.data);
       });
   };
 
   return (
-    <div>
-      <input
-        value={username}
-        placeholder={"Имя пользователя"}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        value={email}
-        placeholder={"Электронная почта"}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        value={password}
-        placeholder={"Пароль"}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      {error && <p>{error}</p>}
-      <button onClick={signUp}>123</button>
+    <div className={classes.authentication}>
+      <div className={classes.authentication__content}>
+        <div className={classes.authentication__form}>
+          <h3>Регистрация</h3>
+          <input
+            value={username}
+            placeholder={"Имя пользователя"}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            value={email}
+            placeholder={"Электронная почта"}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            value={password}
+            placeholder={"Пароль"}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {error && <p className={"alert"}>{error}</p>}
+          <button onClick={signUp}>Зарегистрироваться</button>
+          <p
+            className={"secondary clickable"}
+            onClick={() => navigate("/sign-in")}
+          >
+            Уже есть аккаунт
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

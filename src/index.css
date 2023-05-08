@@ -17,3 +17,17 @@ body {
           radial-gradient(at 52% 85%, hsla(224,47%,81%,0.23) 0px, transparent 70%),
           radial-gradient(at 86% 67%, hsla(272,47%,81%,0.2) 0px, transparent 70%);
 }
+
+.secondary {
+    font-size: 12px;
+    color: #a0a0a0;
+}
+
+.alert {
+    font-size: 14px;
+    color: darkred;
+}
+
+.clickable {
+    cursor: pointer;
+}

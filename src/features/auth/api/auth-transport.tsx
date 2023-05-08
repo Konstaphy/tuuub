@@ -1,12 +1,25 @@
 import axios, { AxiosResponse } from "axios";
+import { useUserStore } from "../../../entities/user/model/user";
 
 const methods = {
   signUp: "sign-up",
   signIn: "sign-in",
 };
 
+export interface IAuthTransport {
+  signUp(
+    username: string,
+    password: string,
+    email: string
+  ): Promise<{ token: string; user_id: string }>;
+  signIn(
+    username: string,
+    password: string
+  ): Promise<{ token: string; user_id: string }>;
+}
+
 class AuthTransport {
-  private readonly url = "http://95.182.122.177:8080/users/";
+  private readonly url = "http://localhost:8080/users/";
 
   public async signUp(username: string, password: string, email: string) {
     return await axios

@@ -2,45 +2,54 @@ import { useState } from "react";
 import { authTransport } from "../../../features/auth/api/auth-transport";
 import { SHA256 } from "crypto-js";
 import { useNavigate } from "react-router-dom";
-import { useUserStore } from "../../../entities/user/model/user";
+import { AuthenticationService } from "../../../features/auth/lib/authentication-service";
+import classes from "../authentication.module.css";
 
 export const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
 
-  const setUser = useUserStore((st) => st.setUser);
+  const navigate = useNavigate();
+  const authService = new AuthenticationService(authTransport);
 
   const signIn = () => {
     setError(null);
-    authTransport
+    authService
       .signIn(username, SHA256(password).toString())
       .then((res) => {
-        setUser(res.user_id, res.token);
         navigate("/person/" + res.user_id);
       })
       .catch((e) => {
         if (e.response.status === 403) {
           setError("Неверный логин или пароль");
         }
+        setError(e.response.data);
       });
   };
 
   return (
-    <div>
-      <input
-        placeholder={"Имя пользователя"}
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        placeholder={"Пароль"}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      {error && <p>{error}</p>}
-      <button onClick={signIn}>123</button>
+    <div className={classes.authentication}>
+      <div className={classes.authentication__content}>
+        <div className={classes.authentication__form}>
+          <h3>Войти</h3>
+          <input
+            placeholder={"Имя пользователя"}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            placeholder={"Пароль"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {error && <p className={"alert"}>{error}</p>}
+          <button onClick={signIn}>123</button>
+          <p className={"secondary"} onClick={() => navigate("/sign-up")}>
+            Зарегистрироваться
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
