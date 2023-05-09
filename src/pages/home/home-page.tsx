@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { authTransport } from "../../features/auth/api/auth-transport";
 import { videosTransport } from "../../features/videos/api/videos-transport";
 import { Player } from "../../widgets/player/player";
+import { url } from "../../shared/api/transport";
 
 export const HomePage = () => {
   const [videos, setVideos] = useState<
@@ -19,7 +20,7 @@ export const HomePage = () => {
             <Player
               imageOnly
               width={200}
-              file={`http://localhost:8080/videos/s3?key=${v.file_path}`}
+              file={`http://${url}/videos/s3?key=${v.file_path}`}
             />
           </div>
         );

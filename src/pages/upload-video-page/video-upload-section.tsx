@@ -25,7 +25,7 @@ export const VideoUploadSection: FC = () => {
       <div className={"upload-video-form__video"}>
         <Player file={file} />
       </div>
-      {/*<img src={"http://localhost:8080/videos/s3?key=videos/Indoor-logo.jpg"} />*/}
+      {/*<img src={"http://${url}/videos/s3?key=videos/Indoor-logo.jpg"} />*/}
       <div className="upload-video-form__controls">
         <label
           htmlFor={"file-upload"}
