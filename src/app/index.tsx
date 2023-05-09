@@ -7,6 +7,7 @@ import { useUserStore } from "../entities/user/model/user";
 import { useEffect } from "react";
 import { AuthenticationService } from "../features/auth/lib/authentication-service";
 import { authTransport } from "../features/auth/api/auth-transport";
+import { HomePage } from "../pages/home/home-page";
 
 export const App = () => {
   const { token, invalidate } = useUserStore();
@@ -40,7 +41,7 @@ export const App = () => {
     <div id="app-root">
       <Header />
       <Routes>
-        <Route path="/" element={<div>content</div>}></Route>
+        <Route path="/" element={<HomePage />}></Route>
         <Route path="/person/:id" element={<PersonVideoPage />}></Route>
         <Route path="*" element={<Navigate to={"/"} />}></Route>
       </Routes>

@@ -24,7 +24,12 @@ class VideosTransport {
 
   public async getAllVideos() {
     return await axios
-      .get<unknown, AxiosResponse<string>>(this.url + methods.getAll, {
+      .get<
+        unknown,
+        AxiosResponse<{
+          videos: { title: string; file_path: string; id: string }[];
+        }>
+      >(this.url + methods.getAll, {
         headers: { Authorization: "Bearer " + this.token },
       })
       .then((res) => res.data);
