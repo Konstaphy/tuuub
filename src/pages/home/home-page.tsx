@@ -20,7 +20,7 @@ export const HomePage = () => {
             <Player
               imageOnly
               width={200}
-              file={`http://${url}/videos/s3?key=${v.file_path}`}
+              file={`${url}/videos/s3?key=${v.file_path}`}
             />
           </div>
         );
