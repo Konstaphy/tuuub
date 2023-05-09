@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build NODE_ENV=production"
+    "build": "tsc && vite NODE_ENV=production build"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
