@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { useUserStore } from "../../../entities/user/model/user";
+import { transport } from "../../../shared/api/transport";
 
 const methods = {
   upload: "upload",
@@ -15,7 +16,7 @@ class VideosTransport {
   }
 
   public async uploadVideo(video: FormData) {
-    return await axios
+    return await transport
       .post<FormData, AxiosResponse<string>>(this.url + methods.upload, video, {
         headers: { Authorization: "Bearer " + this.token },
       })
@@ -23,7 +24,7 @@ class VideosTransport {
   }
 
   public async getAllVideos() {
-    return await axios
+    return await transport
       .get<
         unknown,
         AxiosResponse<{

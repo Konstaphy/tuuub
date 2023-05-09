@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { transport } from "../../../shared/api/transport";
 
 const methods = {
   signUp: "sign-up",
@@ -25,7 +26,7 @@ class AuthTransport implements IAuthTransport {
   private readonly url = "http://localhost:8080/users/";
 
   public async signUp(username: string, password: string, email: string) {
-    return await axios
+    return await transport
       .post<
         FormData,
         AxiosResponse<{ token: string; user_id: string; username: string }>
@@ -38,7 +39,7 @@ class AuthTransport implements IAuthTransport {
       .then((res) => res.data);
   }
   public async signIn(username: string, password: string) {
-    return await axios
+    return await transport
       .post<
         FormData,
         AxiosResponse<{ token: string; user_id: string; username: string }>
@@ -50,7 +51,7 @@ class AuthTransport implements IAuthTransport {
   }
 
   public async refresh(token: string) {
-    return await axios
+    return await transport
       .get(this.url + methods.refresh, {
         headers: { Authorization: "Bearer " + token },
       })
