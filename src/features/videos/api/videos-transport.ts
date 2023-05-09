@@ -8,7 +8,7 @@ const methods = {
 };
 
 class VideosTransport {
-  private readonly url = "http://localhost:8080/videos/";
+  private readonly url = "/videos/";
   private readonly token: string;
 
   constructor() {

@@ -23,7 +23,7 @@ export interface IAuthTransport {
 }
 
 class AuthTransport implements IAuthTransport {
-  private readonly url = "http://localhost:8080/users/";
+  private readonly url = "/users/";
 
   public async signUp(username: string, password: string, email: string) {
     return await transport
