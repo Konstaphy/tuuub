@@ -6,6 +6,7 @@ type UserStore = {
   username: null | string;
   setUser: (userId: string, token: string, username: string) => void;
   token: null | string;
+  invalidate: () => void;
 };
 
 export const useUserStore = create(
@@ -16,6 +17,7 @@ export const useUserStore = create(
       username: null,
       setUser: (userId: string, token: string, username: string) =>
         set({ userId, token, username }),
+      invalidate: () => set({ userId: null, token: null, username: null }),
     }),
     { name: "user" }
   )

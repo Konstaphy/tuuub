@@ -34,16 +34,3 @@
 
     font-size: 14px;
 }
-
-.authentication__form button {
-    cursor: pointer;
-
-    min-width: 100px;
-    padding: 10px;
-
-    border: 1px solid #0004;
-    outline: none;
-    background-color: #fafafa;
-
-    border-radius: 5px;
-}

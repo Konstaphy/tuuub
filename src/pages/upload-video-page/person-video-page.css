@@ -14,3 +14,26 @@
 .upload-video-form {
     padding: 20px;
 }
+
+.upload-video-form__video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    width: 100%;
+}
+
+.upload-video-form__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.upload-video-form__controls > div {
+    position: relative;
+}
+
+.upload-video-form__controls input[type="file"] {
+    display: none;
+}

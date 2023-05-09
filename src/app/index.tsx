@@ -9,13 +9,16 @@ import { AuthenticationService } from "../features/auth/lib/authentication-servi
 import { authTransport } from "../features/auth/api/auth-transport";
 
 export const App = () => {
-  const { token } = useUserStore();
+  const { token, invalidate } = useUserStore();
 
   const authService = new AuthenticationService(authTransport);
 
   useEffect(() => {
     if (token) {
-      authService.refresh().catch((e) => console.error(e));
+      authService.refresh().catch((e) => {
+        invalidate();
+        console.error(e);
+      });
     }
   }, []);
 

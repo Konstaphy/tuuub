@@ -4,6 +4,7 @@ import { SHA256 } from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationService } from "../../../features/auth/lib/authentication-service";
 import classes from "../authentication.module.css";
+import { Button } from "../../../shared/ui/button/button";
 
 export const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -46,7 +47,7 @@ export const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p className={"alert"}>{error}</p>}
-          <button onClick={signUp}>Зарегистрироваться</button>
+          <Button onClick={signUp}>Зарегистрироваться</Button>
           <p
             className={"secondary clickable"}
             onClick={() => navigate("/sign-in")}
