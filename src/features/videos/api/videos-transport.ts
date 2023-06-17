@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
-import { useUserStore } from "../../../entities/user/model/user";
 import { transport } from "../../../shared/api/transport";
+import {useUserStore} from "../../../app";
 
 const methods = {
   upload: "upload",

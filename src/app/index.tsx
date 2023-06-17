@@ -2,7 +2,6 @@ import { Header } from "../widgets/header/header";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { PersonVideoPage } from "../pages/upload-video-page/person-video-page";
 import { useEffect } from "react";
-import { AuthenticationService } from "../features/auth/lib/authentication-service";
 import { authTransport } from "../features/auth/api/auth-transport";
 import { HomePage } from "../pages/home/home-page";
 import {YandexSignIn} from "../pages/authentication/yandex-sign-in/yandex-sign-in";
@@ -53,14 +52,14 @@ export const useUserStore = create(
 export const App = () => {
   const { token, invalidate } = useUserStore();
 
-  const authService = new AuthenticationService(authTransport);
+  // const authService = new AuthenticationService(authTransport);
 
   useEffect(() => {
     if (token) {
-      authService.refresh().catch((e) => {
-        invalidate();
-        console.error(e);
-      });
+      // authService.refresh().catch((e) => {
+      //   invalidate();
+      //   console.error(e);
+      // });
     }
   }, []);
 

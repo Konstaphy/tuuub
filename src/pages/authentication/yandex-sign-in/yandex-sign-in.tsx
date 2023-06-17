@@ -2,7 +2,6 @@ import {useRef, useState} from "react";
 import { authTransport } from "../../../features/auth/api/auth-transport";
 import { SHA256 } from "crypto-js";
 import { useNavigate } from "react-router-dom";
-import { AuthenticationService } from "../../../features/auth/lib/authentication-service";
 import classes from "../authentication.module.css";
 import yandexid from "./../../../shared/assets/yandexid.webp"
 

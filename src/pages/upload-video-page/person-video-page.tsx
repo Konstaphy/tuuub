@@ -1,11 +1,11 @@
 import "./person-video-page.css";
 import { useParams } from "react-router-dom";
-import { useUserStore } from "../../entities/user/model/user";
 import { VideoUploadSection } from "./video-upload-section";
+import {useUserStore} from "../../app";
 
 export const PersonVideoPage = () => {
   const { id } = useParams<{ id: string }>();
-  const userId = useUserStore((st) => st.userId);
+  const userId = useUserStore((st) => st.user?.id);
   return (
     <div className={"person-video-page"}>
       <div className={"person-videos"}>
