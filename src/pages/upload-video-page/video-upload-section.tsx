@@ -1,10 +1,12 @@
 import { FC, useState, ChangeEvent, FormEvent } from "react";
-import { videosTransport } from "../../features/videos/api/videos-transport";
 import { Player } from "../../widgets/player/player";
 import { Button } from "../../shared/ui/button/button";
+import {VideosTransport} from "../../features/videos/api/videos-transport";
+import {useUserStore} from "../../app";
 
 export const VideoUploadSection: FC = () => {
   const [file, setFile] = useState<undefined | File>(undefined);
+  const userStore = useUserStore()
 
   const handleFileChange = (event?: ChangeEvent<HTMLInputElement>) => {
     event?.preventDefault();
@@ -17,7 +19,7 @@ export const VideoUploadSection: FC = () => {
     const formData = new FormData();
     if (file) {
       formData.append("video", file);
-      videosTransport.uploadVideo(formData).then(console.log);
+      new VideosTransport(userStore).uploadVideo(formData).then(console.log);
     }
   };
   return (

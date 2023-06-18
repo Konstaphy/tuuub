@@ -1,18 +1,19 @@
-import { AxiosResponse } from "axios";
-import { transport } from "../../../shared/api/transport";
-import {useUserStore} from "../../../app";
+import {AxiosResponse} from "axios";
+import {transport} from "../../../shared/api/transport";
+import {UserStore} from "../../../app";
+
 
 const methods = {
   upload: "upload",
   getAll: "get",
 };
 
-class VideosTransport {
+export class VideosTransport {
   private readonly url = "/videos/";
   private readonly token: string;
 
-  constructor() {
-    this.token = useUserStore.getState().token || "";
+  constructor(userStore: UserStore) {
+    this.token = userStore.token || "";
   }
 
   public async uploadVideo(video: FormData) {
@@ -37,4 +38,3 @@ class VideosTransport {
   }
 }
 
-export const videosTransport = new VideosTransport();

@@ -1,6 +1,6 @@
 import "./header.css";
 import { useNavigate } from "react-router-dom";
-import {useUserStore} from "../../app";
+import { useUserStore } from "../../app";
 export const Header = () => {
   const { user } = useUserStore();
   const navigate = useNavigate();
@@ -8,9 +8,12 @@ export const Header = () => {
     <div className={"header"}>
       <p>TuUuB</p>
       <p className={"tip"}>Press H to open menu</p>
-      <p className={"avatar"} onClick={() => navigate(`/person/${user?.id}`)}>
-        {user?.real_name}
-      </p>
+      <div>
+        <p className={"avatar"} onClick={() => navigate(`/person/${user?.id}`)}>
+          {user?.real_name}
+        </p>
+        <p style={{ fontSize: "12px" }}>{user?.display_name}</p>
+      </div>
     </div>
   );
 };

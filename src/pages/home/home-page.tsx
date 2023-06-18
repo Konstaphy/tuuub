@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { authTransport } from "../../features/auth/api/auth-transport";
-import { videosTransport } from "../../features/videos/api/videos-transport";
 import { Player } from "../../widgets/player/player";
 import { url } from "../../shared/api/transport";
+import {VideosTransport} from "../../features/videos/api/videos-transport";
+import {useUserStore} from "../../app";
 
 export const HomePage = () => {
+  const userStore = useUserStore()
   const [videos, setVideos] = useState<
     { id: string; file_path: string; title: string }[]
   >([]);
   useEffect(() => {
-    videosTransport.getAllVideos().then((res) => setVideos(res.videos || []));
+    new VideosTransport(userStore).getAllVideos().then((res) => setVideos(res.videos || []));
   }, []);
   return (
     <>
