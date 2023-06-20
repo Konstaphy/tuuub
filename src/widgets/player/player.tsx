@@ -4,15 +4,17 @@ import ReactPlayer from "react-player";
 type PlayerProps = {
   file?: File | string;
   imageOnly?: boolean;
+  placeholder?: string;
   width?: number;
 };
 
 export const Player: FC<PlayerProps> = ({
   file,
+  placeholder,
   imageOnly = false,
   width = 600,
 }) => {
-  if (!file) {
+  if (!placeholder) {
     return (
       <img
         src={"https://www.gunungrajapaksi.com/upload/image/default.jpg"}

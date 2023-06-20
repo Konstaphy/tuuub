@@ -6,7 +6,7 @@ export const Header = () => {
   const navigate = useNavigate();
   return (
     <div className={"header"}>
-      <p>TuUuB</p>
+      <p onClick={() => navigate("/")}>TuUuB</p>
       <p className={"tip"}>Press H to open menu</p>
       <div>
         <p className={"avatar"} onClick={() => navigate(`/person/${user?.id}`)}>

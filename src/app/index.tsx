@@ -10,6 +10,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { createLogger } from "vite";
 import axios from "axios";
+import { Player } from "../widgets/player/player";
+import { VideoPage } from "../pages/video/video";
 
 type UserData = {
   id: string;
@@ -100,6 +102,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/person/:id" element={<PersonVideoPage />}></Route>
+        <Route path="/video/:id" element={<VideoPage />}></Route>
         <Route path="*" element={<Navigate to={"/"} />}></Route>
       </Routes>
     </div>

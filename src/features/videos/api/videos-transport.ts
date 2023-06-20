@@ -1,7 +1,6 @@
-import {AxiosResponse} from "axios";
-import {transport} from "../../../shared/api/transport";
-import {UserStore} from "../../../app";
-
+import { AxiosResponse } from "axios";
+import { transport } from "../../../shared/api/transport";
+import { UserStore } from "../../../app";
 
 const methods = {
   upload: "upload",
@@ -16,7 +15,7 @@ export class VideosTransport {
     this.token = userStore.token || "";
   }
 
-  public async uploadVideo(video: FormData) {
+  public async uploadVideo(video: FormData, title?: string) {
     return await transport
       .post<FormData, AxiosResponse<string>>(this.url + methods.upload, video, {
         headers: { Authorization: "Bearer " + this.token },
@@ -37,4 +36,3 @@ export class VideosTransport {
       .then((res) => res.data);
   }
 }
-
