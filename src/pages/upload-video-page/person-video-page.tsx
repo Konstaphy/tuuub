@@ -23,7 +23,7 @@ export const PersonVideoPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get<Video[]>("http://localhost:8080/videos/get_by_id", {
+      .get<Video[]>("http://95.182.121.35:8080/videos/get_by_id", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((d) => setVideos(d.data));

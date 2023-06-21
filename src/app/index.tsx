@@ -56,8 +56,6 @@ export const useUserStore = create(
 export const App = () => {
   const { token, user, setUser, invalidate } = useUserStore();
 
-  // const authService = new AuthenticationService(authTransport);
-
   useEffect(() => {
     if (token) {
       // authService.refresh().catch((e) => {
@@ -70,7 +68,7 @@ export const App = () => {
     if (!user && token) {
       axios
         .get<UserData & { error: string }>(
-          `http://localhost:8080/users/user/${token}`
+          `http://95.182.121.35:8080/users/user/${token}`
         )
         .then((d) => {
           if (d.data.error) {
